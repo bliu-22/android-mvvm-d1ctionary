@@ -9,9 +9,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.ViewPager2;
 
 
+import android.media.AsyncPlayer;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -193,19 +195,26 @@ public class WordPageActivity extends AppCompatActivity {
         audioIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                MediaPlayer mediaPlayer = new MediaPlayer();
-
+//                MediaPlayer mediaPlayer = new MediaPlayer();
+//
+//                try {
+//                    Log.d(TAG, wordPageInfoToDisplay.getListWordInfo().get(0).getPhonetics().get(0).getAudio());
+//                    mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+//                    mediaPlayer.setDataSource(wordPageInfoToDisplay.getListWordInfo().get(0).getPhonetics().get(0).getAudio());
+//                    mediaPlayer.prepare();
+//                    mediaPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+//                        @Override
+//                        public void onPrepared(MediaPlayer mp) {
+//                            mediaPlayer.start();
+//                        }
+//                    });
+//                } catch (Exception e){
+//                    e.printStackTrace();
+//                    Toast.makeText(WordPageActivity.this, "Failed to play audio", Toast.LENGTH_SHORT).show();
+//                }
+                AsyncPlayer asyncPlayer = new AsyncPlayer("async player");
                 try {
-                    Log.d(TAG, wordPageInfoToDisplay.getListWordInfo().get(0).getPhonetics().get(0).getAudio());
-                    mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
-                    mediaPlayer.setDataSource(wordPageInfoToDisplay.getListWordInfo().get(0).getPhonetics().get(0).getAudio());
-                    mediaPlayer.prepare();
-                    mediaPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
-                        @Override
-                        public void onPrepared(MediaPlayer mp) {
-                            mediaPlayer.start();
-                        }
-                    });
+                    asyncPlayer.play(WordPageActivity.this, Uri.parse( wordPageInfoToDisplay.getListWordInfo().get(0).getPhonetics().get(0).getAudio()),false, AudioManager.STREAM_MUSIC);
                 } catch (Exception e){
                     e.printStackTrace();
                     Toast.makeText(WordPageActivity.this, "Failed to play audio", Toast.LENGTH_SHORT).show();
