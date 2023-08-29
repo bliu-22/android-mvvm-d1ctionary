@@ -63,6 +63,7 @@ public abstract class NetworkBoundResource<ResultType, RequestType> {
     private void setValue(Resource<ResultType> value){
         if(result.getValue() != value){
             result.setValue(value);
+            Log.d(TAG, "setValue: called ");
         }
     }
 
@@ -100,7 +101,7 @@ public abstract class NetworkBoundResource<ResultType, RequestType> {
                                         @Override
                                         public void onChanged(ResultType resultType) {
                                             setValue(Resource.success(resultType));
-                                            Log.d(TAG, "onChanged: loadFromDB called");
+
                                         }
                                     });
                                 }

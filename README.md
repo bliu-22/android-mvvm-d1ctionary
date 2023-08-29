@@ -6,10 +6,10 @@ A simple yet very useful dictionary app I made while learning MVVM. The goal was
 
 ## Features
 
-- Search feature that fetchs word data from remote data source and caches to local database.
+- Search feature that fetches word data from remote data source and caches to local database.
 - Search suggestion that updates dynamically
 - Audio playback for pronounciation
-- Bookmark words for easy access.
+- Bookmarking for easy access.
 - Priority level and displaying saved words ordered by priority
 - Add notes to words.
 - Swipe to delete saved words from bookmark list.
@@ -36,7 +36,7 @@ changing priority level:
 ![Alt text](screenshots/priority.gif)
 
 ## Technical stuffs
-- Built with MVVM(Model-View-ViewModel) architectural pattern which separates UI, business logic and data. The UI contains minimal business logic and doesn't directly interact with the datasource. Instead it observes Livedata and updates in real time. Viewmodels handle the logic and interact with the data layer where the repository fetch data from either network or local database. This way when UI gets destroyed during configuration changes and data remains unaffected.
+- Built with MVVM(Model-View-ViewModel) architectural pattern which separates UI, business logic and data. The UI contains minimal business logic and doesn't directly interact with the data source. Instead it observes Livedata and updates in real time. Viewmodels handle the logic and interact with the data layer where the repository fetch data from either network or local database. This way when UI gets destroyed during configuration changes and data remains unaffected.
 - Followed single-source-of-truth principle. The data always comes from the local database. When a query is made, it first checks if data exists locally, if not it then fetches from network and stores the data into local cache, where the data then gets sent to the UI as livedata.
 - Room persistence library used for local data caching.
 - Retrofit used for fectching data from REST API
@@ -46,10 +46,10 @@ changing priority level:
 - The awesome free dictionary api: https://dictionaryapi.dev/
 
 ## Limitations and things to improve
-- There is a bug where somtimes the search suggestion doesn't always update correctly when fetching from network and requires manual update by changing the query text.
-- Should probably add a loading animation while fetching data from network.
+- ~~There is a bug where somtimes the search suggestion doesn't always update correctly when fetching from network and requires manual update by changing the query text.~~ (Fixed) 
+- Consider adding a loading animation while fetching data from network.
 - Implement pagination for search list
-- Maybe it's better to replace swipe to delete with a hold to delete feature
+- Consider replacing swipe to delete with hold to delete 
 
 ## Challenges
 - The implementation of MVVM can be quite challaneging at first, but I did start to see the huge benefit it has during the process of building this project.

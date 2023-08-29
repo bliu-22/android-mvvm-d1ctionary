@@ -53,10 +53,10 @@ public class SearchWordActivity extends AppCompatActivity {
             @Override
             public void onChanged(Resource<List<WordPageInfo>> listResource) {
                 if(listResource != null){
-                    Log.d(TAG, "onChanged:  status: " + listResource.status);
+                    //Log.d(TAG, "onChanged:  status: " + listResource.status);
 
                     if(listResource.data != null){
-                        Log.d(TAG, "onChanged:  listResource.data != NULL");
+                        //Log.d(TAG, "onChanged:  listResource.data != NULL");
                         Log.d(TAG, "onChanged:  response size: " + listResource.data.size());
 
                         searchResultRecyclerViewAdaptor.setListWordPageInfo(listResource.data);
@@ -106,7 +106,7 @@ public class SearchWordActivity extends AppCompatActivity {
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                if(newText != ""){
+                if(newText != "" & newText != " "){
                     wordSearchViewModel.searchWordApiTest(newText, true);
                     Log.d(TAG, "onQueryTextChange:  word entered: " + newText);
                 }
